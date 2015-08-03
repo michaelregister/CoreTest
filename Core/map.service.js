@@ -42,7 +42,7 @@ var mapModule;
     })();
     mapModule.MapService = MapService;
 })(mapModule || (mapModule = {}));
-angular.module("app").factory("mapService", function ($http) {
+angular.module("lba.Core").factory("mapService", function ($http) {
     return new mapModule.MapService($http);
 });
 //# sourceMappingURL=map.service.js.map

@@ -2,7 +2,7 @@ angular.module('lib/Core/map.html', []).run(['$templateCache', function($templat
   'use strict';
 
   $templateCache.put('lib/Core/map.html',
-    "<leaflet ng-show=\"isActiveView('map')\" class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
   );
 
 }]);

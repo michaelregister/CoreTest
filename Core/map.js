@@ -42,7 +42,7 @@ var app;
                     /* map Layers*/
                     // $rootScope.getBaseLayers = mapService.getBaseLayers;
                     /* map Layers-filters*/
-                    leafletData.getMap().then(function (map) {
+                    leafletData.getMap('mymap1').then(function (map) {
                         $rootScope.MYMAP = map;
                         $rootScope.mrkgrp = [];
                         $rootScope.ALLMARKERS = [];

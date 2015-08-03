@@ -10,7 +10,10 @@
     "lba",
     "core"
   ],
-  "license": "MIT",
+    "license": "MIT",
+    "dependencies": {
+        "angular-leaflet-directive": "~0.8.6"
+  },
   "ignore": [
     "**/.*",
     "node_modules",

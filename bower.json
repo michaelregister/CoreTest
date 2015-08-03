@@ -1,0 +1,21 @@
+{
+  "name": "lba.Core",
+  "version": "0.0.0",
+  "homepage": "https://github.com/michaelregister/CoreTest",
+  "authors": [
+    "michaelregister <michael@innovocative.com>"
+  ],
+  "description": "Core",
+  "keywords": [
+    "lba",
+    "core"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

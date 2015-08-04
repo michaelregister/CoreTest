@@ -6,6 +6,142 @@ angular.module('lib/Core/map.html', []).run(['$templateCache', function($templat
   );
 
 }]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
 ;var xmod = angular.module("lba.Core", ["lib/Core/map.html"]);
 var app;
 (function (app) {
@@ -25,6 +161,7 @@ var app;
                 this.transclude = true;
                 this.scope = {
                     datasource: '=',
+                    popupfunction: '='
                 };
                 this.controller = ["$rootScope", "$scope", "leafletData", "mapService", "$attrs", function ($rootScope, $scope, leafletData, mapService, $attrs) {
                     var bingKey = "As3LPVTMbjlvopcBUBWlbYazvuvTE4MOUg5kr1oP0G_faR4baF4b0KDxTUAy4w4a";
@@ -54,6 +191,7 @@ var app;
                         });
                     });
                     $scope.CreateMarkers = function (datapoint) {
+                        var mp = this;
                         var ll = new L.LatLng(datapoint.location.latitude, datapoint.location.longitude);
                         var geojsonMarkerOptions = {
                             radius: 8,
@@ -75,6 +213,7 @@ var app;
                             this.setStyle({ radius: 8, fillOpacity: 1, color: '#fff', fillColor: this.MainColor });
                         });
                         cmarker.on('click', function (e) {
+                            mp.popupfunction(cmarker);
                         });
                         return cmarker;
                     };

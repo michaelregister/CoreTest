@@ -8,6 +8,7 @@
     "description": "Core",
     "main": [
         "Core/dist/lba.core.js",
+        "Core/dist/lba.core.min.js",
         "Core/dist/lba.core.css"
     ],
   "keywords": [

@@ -12,14 +12,6 @@ var app;
     var map;
     (function (_map) {
         "use strict";
-        // export class DisplayPropertiesModel {
-        //   public  enabled: boolean = false;
-        //     public genUsetype: string = "Office";
-        //     public useSQFT: boolean = false;
-        //     public sqFTRangeMin: number = -1;
-        //     public sqFTRangeMax: number = -1;
-        //     public demoFilterEnabled: boolean = false;
-        // };
         var MapTileLayerOptions = (function () {
             function MapTileLayerOptions() {
             }
@@ -44,7 +36,7 @@ var app;
                     leafletData.getMap('mymap1').then(function (map) {
                         $rootScope.MYMAP = map;
                         $rootScope.mrkgrp = [];
-                        $rootScope.ALLMARKERS = $scope.datasource; // $attrs.datasource;//[];
+                        $rootScope.ALLMARKERS = $scope.datasource;
                         $rootScope.getBaseLayers = mapService.getBaseLayers;
                         var baseLayers = $rootScope.getBaseLayers(map);
                         baseLayers["Bing Aerial Map"].addTo(map);
@@ -53,7 +45,39 @@ var app;
                         $rootScope.previouszoom = map.getZoom();
                         $(".leaflet-control-zoom").css("visibility", "visible");
                         $rootScope.$emit("AddedPrimaryControls", [map, bingKey]);
+                        $scope.$watchCollection('datasource', function () {
+                            if ($scope.datasource != undefined) {
+                                for (var i = 0; i < $scope.datasource.length; i++) {
+                                    map.addLayer($scope.CreateMarkers($scope.datasource[i]));
+                                }
+                            }
+                        });
                     });
+                    $scope.CreateMarkers = function (datapoint) {
+                        var ll = new L.LatLng(datapoint.location.latitude, datapoint.location.longitude);
+                        var geojsonMarkerOptions = {
+                            radius: 8,
+                            fillColor: "#00f",
+                            color: "#fff",
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.8,
+                        };
+                        var cmarker = L.circleMarker(ll, geojsonMarkerOptions);
+                        cmarker.MainColor = "#00f";
+                        cmarker.Feature = datapoint;
+                        cmarker.ID = datapoint.ID;
+                        cmarker.on('mouseover', function (e) {
+                            var selected = '#7bbf50';
+                            this.setStyle({ radius: 12, fillOpacity: 1, color: '#fff', fillColor: selected });
+                        });
+                        cmarker.on('mouseout', function (e) {
+                            this.setStyle({ radius: 8, fillOpacity: 1, color: '#fff', fillColor: this.MainColor });
+                        });
+                        cmarker.on('click', function (e) {
+                        });
+                        return cmarker;
+                    };
                 }];
                 console.log("xmap constructor called");
             }

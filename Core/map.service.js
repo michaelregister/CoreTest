@@ -2,7 +2,6 @@ var mapModule;
 (function (mapModule) {
     "use strict";
     var MapService = (function () {
-        // static $inject = ["$http"];
         function MapService($http) {
             this.$http = $http;
         }
@@ -37,12 +36,14 @@ var mapModule;
             };
             return baseLayers;
         };
+        MapService.$inject = ["$http"];
+        MapService.IID = "mapService";
         MapService.bingKey = "As3LPVTMbjlvopcBUBWlbYazvuvTE4MOUg5kr1oP0G_faR4baF4b0KDxTUAy4w4a";
         return MapService;
     })();
     mapModule.MapService = MapService;
 })(mapModule || (mapModule = {}));
-angular.module("lba.Core").factory("mapService", function ($http) {
+angular.module("lba.Core").factory(mapModule.MapService.IID, ["$http", function ($http) {
     return new mapModule.MapService($http);
-});
+}]);
 //# sourceMappingURL=map.service.js.map

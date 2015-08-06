@@ -7,6 +7,15 @@ angular.module('lib/Core/map.html', []).run(['$templateCache', function($templat
 
 }]);
 
+;angular.module('lib/Core/map.html', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('lib/Core/map.html',
+    "<leaflet class=sidebar-map id=mymap1 center=bastia layers=layers></leaflet>"
+  );
+
+}]);
+
 ;var xmod = angular.module("lba.Core", ["lib/Core/map.html", "leaflet-directive"]);
 var app;
 (function (app) {
@@ -28,7 +37,7 @@ var app;
                     datasource: '=',
                     popupfunction: '='
                 };
-                this.controller = ["$rootScope", "$scope", "leafletData", "mapService", "$attrs", mapController];
+                this.controller = ["$rootScope", "$scope", "leafletData", "mapService", "$attrs", "$compile", mapController];
                 console.log("xmap constructor called");
             }
             return Xmap;
@@ -38,7 +47,7 @@ var app;
             //      "leafletData",  "mapService","$attrs",
             //function
             // static $inject = ["$rootScope", "$scope","leafletData",  "mapService","$attrs"]
-            function mapController($rootScope, $scope, leafletData, mapService, $attrs) {
+            function mapController($rootScope, $scope, leafletData, mapService, $attrs, $compile) {
                 var bingKey = "As3LPVTMbjlvopcBUBWlbYazvuvTE4MOUg5kr1oP0G_faR4baF4b0KDxTUAy4w4a";
                 angular.extend($scope, {
                     bastia: { lat: 39.0997, lng: -94.5786, zoom: 4 },
@@ -87,8 +96,15 @@ var app;
                     cmarker.on('mouseout', function (e) {
                         this.setStyle({ radius: 8, fillOpacity: 1, color: '#fff', fillColor: this.MainColor });
                     });
+                    cmarker.mp = mp;
                     cmarker.on('click', function (e) {
-                        mp.popupfunction(cmarker);
+                        var pop = cmarker.mp.popupfunction(cmarker);
+                        var latlng = new L.LatLng(cmarker.Feature.location.latitude, cmarker.Feature.location.longitude);
+                        var ele = angular.element(pop);
+                        var newScope = $scope.$new();
+                        var compiled = $compile(ele)($scope);
+                        var popup1 = L.popup().setLatLng(e.latlng).setContent(compiled[0]);
+                        popup1.openOn($rootScope.MYMAP);
                     });
                     return cmarker;
                 };
